@@ -1,7 +1,4 @@
-// Arup Guha
-// 6/20/07
-// Written in COP 3502 to illustrate an array implementation of a stack.
-
+#include <stdlib.h>
 #include <stdio.h>
 
 // The array will store the items in the stack, first in

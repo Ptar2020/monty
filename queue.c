@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #define EMPTY -1
 #define INIT_SIZE 10
 
