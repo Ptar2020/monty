@@ -1,13 +1,13 @@
 #include "monty.h"
 
 /**
- * _queue - sets the format of the data to a queue (FIFO)
+ * f_queue - sets the format of the data to a queue (FIFO)
  *
  * @doubly: head of the linked list
  * @cline: line number;
  * Return: no return
  */
-void _queue(stack_t **doubly, unsigned int cline)
+void f_queue(stack_t **doubly, unsigned int cline)
 {
 	(void)doubly;
 	(void)cline;
@@ -16,13 +16,13 @@ void _queue(stack_t **doubly, unsigned int cline)
 }
 
 /**
- * _stack - sets the format fo the data to a stack (LIFO)
+ * f_stack - sets the format fo the data to a stack (LIFO)
  *
  * @doubly: head of the linked list
  * @cline: line number;
  * Return: no return
  */
-void _stack(stack_t **doubly, unsigned int cline)
+void f_stack(stack_t **doubly, unsigned int cline)
 {
 	(void)doubly;
 	(void)cline;
@@ -31,13 +31,13 @@ void _stack(stack_t **doubly, unsigned int cline)
 }
 
 /**
- * _add - adds the top two elements of the stack
+ * f_add - adds the top two elements of the stack
  *
  * @doubly: head of the linked list
  * @cline: line number;
  * Return: no return
  */
-void _add(stack_t **doubly, unsigned int cline)
+void f_add(stack_t **doubly, unsigned int cline)
 {
 	int m = 0;
 	stack_t *aux = NULL;
@@ -56,30 +56,30 @@ void _add(stack_t **doubly, unsigned int cline)
 
 	aux = (*doubly)->next;
 	aux->n += (*doubly)->n;
-	_pop(doubly, cline);
+	f_pop(doubly, cline);
 }
 
 /**
- * _nop - doesn't do anythinhg
+ * f_nop - doesn't do anythinhg
  *
  * @doubly: head of the linked list
  * @cline: line number;
  * Return: no return
  */
-void _nop(stack_t **doubly, unsigned int cline)
+void f_nop(stack_t **doubly, unsigned int cline)
 {
 	(void)doubly;
 	(void)cline;
 }
 
 /**
- * _sub - subtracts the top element to the second top element of the stack
+ * f_sub - subtracts the top element to the second top element of the stack
  *
  * @doubly: head of the linked list
  * @cline: line number;
  * Return: no return
  */
-void _sub(stack_t **doubly, unsigned int cline)
+void f_sub(stack_t **doubly, unsigned int cline)
 {
 	int m = 0;
 	stack_t *aux = NULL;
@@ -98,5 +98,5 @@ void _sub(stack_t **doubly, unsigned int cline)
 
 	aux = (*doubly)->next;
 	aux->n -= (*doubly)->n;
-	_pop(doubly, cline);
+	f_pop(doubly, cline);
 }

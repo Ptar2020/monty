@@ -64,23 +64,23 @@ typedef struct instruction_s
 extern global_t vglo;
 
 /* opcode_instructuions*/
-void _push(stack_t **stack, unsigned int line_number);
-void _pall(stack_t **stack, unsigned int line_number);
-void _pint(stack_t **doubly, unsigned int cline);
-void _pop(stack_t **doubly, unsigned int cline);
-void _swap(stack_t **doubly, unsigned int cline);
-void _queue(stack_t **doubly, unsigned int cline);
-void _stack(stack_t **doubly, unsigned int cline);
-void _add(stack_t **doubly, unsigned int cline);
-void _nop(stack_t **doubly, unsigned int cline);
-void _sub(stack_t **doubly, unsigned int cline);
-void _div(stack_t **doubly, unsigned int cline);
-void _mul(stack_t **doubly, unsigned int cline);
-void _mod(stack_t **doubly, unsigned int cline);
-void _pchar(stack_t **doubly, unsigned int cline);
-void _pstr(stack_t **doubly, unsigned int cline);
-void _rotl(stack_t **doubly, unsigned int cline);
-void _rotr(stack_t **doubly, unsigned int cline);
+void f_push(stack_t **stack, unsigned int line_number);
+void f_pall(stack_t **stack, unsigned int line_number);
+void f_pint(stack_t **doubly, unsigned int cline);
+void f_pop(stack_t **doubly, unsigned int cline);
+void f_swap(stack_t **doubly, unsigned int cline);
+void f_queue(stack_t **doubly, unsigned int cline);
+void f_stack(stack_t **doubly, unsigned int cline);
+void f_add(stack_t **doubly, unsigned int cline);
+void f_nop(stack_t **doubly, unsigned int cline);
+void f_sub(stack_t **doubly, unsigned int cline);
+void f_div(stack_t **doubly, unsigned int cline);
+void f_mul(stack_t **doubly, unsigned int cline);
+void f_mod(stack_t **doubly, unsigned int cline);
+void f_pchar(stack_t **doubly, unsigned int cline);
+void f_pstr(stack_t **doubly, unsigned int cline);
+void f_rotl(stack_t **doubly, unsigned int cline);
+void f_rotr(stack_t **doubly, unsigned int cline);
 
 /*get function*/
 void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number);
