@@ -1,102 +1,108 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "monty.h"
 
 /**
- * f_queue - sets the format of the data to a queue (FIFO)
- *
- * @doubly: head of the linked list
- * @cline: line number;
- * Return: no return
+ * _push - read fun
+ * @stack: output
+ * @line_number: num
+ * Return: Nothing.
  */
-void f_queue(stack_t **doubly, unsigned int cline)
+void _push(stack_t **stack, unsigned int line_number)
 {
-	(void)doubly;
-	(void)cline;
+	int n;
 
-	vglo.lifo = 0;
-}
-
-/**
- * f_stack - sets the format fo the data to a stack (LIFO)
- *
- * @doubly: head of the linked list
- * @cline: line number;
- * Return: no return
- */
-void f_stack(stack_t **doubly, unsigned int cline)
-{
-	(void)doubly;
-	(void)cline;
-
-	vglo.lifo = 1;
-}
-
-/**
- * f_add - adds the top two elements of the stack
- *
- * @doubly: head of the linked list
- * @cline: line number;
- * Return: no return
- */
-void f_add(stack_t **doubly, unsigned int cline)
-{
-	int m = 0;
-	stack_t *aux = NULL;
-
-	aux = *doubly;
-
-	for (; aux != NULL; aux = aux->next, m++)
-		;
-
-	if (m < 2)
+	if ((_isnumber(global.num)) == 1)
 	{
-		dprintf(2, "L%u: can't add, stack too short\n", cline);
-		free_vglo();
+		dprintf(2, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	aux = (*doubly)->next;
-	aux->n += (*doubly)->n;
-	f_pop(doubly, cline);
+	n = atoi(global.num);
+	add_dnodeint(stack, n);
 }
-
 /**
- * f_nop - doesn't do anythinhg
- *
- * @doubly: head of the linked list
- * @cline: line number;
- * Return: no return
+ * _pall - read fun
+ * @stack: output
+ * @line_number: num
+ * Return: Nothing.
  */
-void f_nop(stack_t **doubly, unsigned int cline)
+void _pall(stack_t **stack, unsigned int line_number)
 {
-	(void)doubly;
-	(void)cline;
-}
+	stack_t *tmp = *stack;
 
-/**
- * f_sub - subtracts the top element to the second top element of the stack
- *
- * @doubly: head of the linked list
- * @cline: line number;
- * Return: no return
- */
-void f_sub(stack_t **doubly, unsigned int cline)
-{
-	int m = 0;
-	stack_t *aux = NULL;
-
-	aux = *doubly;
-
-	for (; aux != NULL; aux = aux->next, m++)
-		;
-
-	if (m < 2)
+	(void) line_number;
+	while (stack && tmp)
 	{
-		dprintf(2, "L%u: can't sub, stack too short\n", cline);
-		free_vglo();
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
+	}
+}
+/**
+ * _pint - prints the value at the top of the stack
+ * @stack: Pointer to head of stack (or queue)
+ * @line_number: Current line number
+ *
+ * Return: No Return
+ */
+void _pint(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+
+	if (!stack || !(*stack))
+	{
+		dprintf(2, "L%d: can't pint, stack empty\n", line_number);
+		exit_op();
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", tmp->n);
+}
+/**
+ * _pop - removes the top element of the stack
+ * @stack: Pointer to head of stack (or queue)
+ * @line_number: Current line number
+ *
+ * Return: No Return
+ */
+void _pop(stack_t **stack, unsigned int line_number)
+{
+
+	if (!stack || !(*stack))
+	{
+		dprintf(2, "L%d: can't pop an empty stack\n", line_number);
+		exit_op();
 		exit(EXIT_FAILURE);
 	}
 
-	aux = (*doubly)->next;
-	aux->n -= (*doubly)->n;
-	f_pop(doubly, cline);
+	delete_node_index(stack, 0);
+
+}
+/**
+ * _swap - swaps the top two elements of the stack
+ * @stack: Pointer to head of stack (or queue)
+ * @line_number: Current line number
+ *
+ * Return: No Return
+ */
+void _swap(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack, *tmp2, *tmp3;
+	int count = 0;
+
+	while (tmp)
+		tmp = tmp->next, count++;
+	if (count < 2 || !stack || !(*stack) || !(*stack)->next)
+	{
+		dprintf(2, "L%d: can't swap, stack too short\n", line_number);
+		exit_op();
+		exit(EXIT_FAILURE);
+	}
+
+	tmp = tmp3 = *stack;
+	tmp2 = tmp->next;
+
+	tmp->next = tmp2->next, tmp->prev = tmp2;
+	tmp2->next = tmp3, tmp2->prev = tmp3->prev;
+
+	*stack = tmp2;
 }
